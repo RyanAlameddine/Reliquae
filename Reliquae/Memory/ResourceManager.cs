@@ -38,14 +38,9 @@ namespace Reliquae.Memory
                 BlockModel model; 
 
                 //TODO: replace this with reflection to follow SOLID principles:
-                if (file.EndsWith("_d.json"))
-                {
-                    model = ParseBlock<DirectAdjacencyModel>(json);
-                }
-                else if (file.EndsWith("_s.json"))
-                {
-                    model = ParseBlock<SingleAdjacencyModel>(json);
-                }
+                if (file.EndsWith("_d.json")) model = ParseBlock<DirectAdjacencyModel>(json);
+                else if (file.EndsWith("_s.json")) model = ParseBlock<SingleAdjacencyModel>(json);
+                else if (file.EndsWith("_sr.json")) model = ParseBlock<SingleRandomAdjacencyModel>(json);
                 else throw new Exception("Block file name must end with \"_s\" or another adjacency model tag!");
 
                 models.Add(model);

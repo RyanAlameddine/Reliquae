@@ -7,7 +7,7 @@ namespace Reliquae.Utilities
     public static class Extensions
     {
         /// <summary>
-        /// Select on 2d array with y and x as parameters of the func
+        /// Select on 2d array with x and y as parameters of the func
         /// </summary>
         public static U[,] Select<T, U>(this T[,] array, Func<int, int, T, U> func)
         {

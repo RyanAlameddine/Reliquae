@@ -9,9 +9,9 @@ using System.Text;
 
 namespace Reliquae.Memory.Models
 {
-    public class SingleAdjacencyModel : IAdjacencyModel
+    public class SingleRandomAdjacencyModel : IAdjacencyModel
     {
-        public string TexturePath { get; init; }
+        public RandomTextureModel[] Textures { get; init; }
         public string W  { get; init; }
         public string NW { get; init; }
         public string N  { get; init; }
@@ -21,9 +21,9 @@ namespace Reliquae.Memory.Models
         public string S  { get; init; }
         public string SW { get; init; }
 
-        public SingleAdjacencyModel(string texturePath, string w, string nw, string n, string ne, string e, string se, string s, string sw)
+        public SingleRandomAdjacencyModel(RandomTextureModel[] textures, string w, string nw, string n, string ne, string e, string se, string s, string sw)
         {
-            TexturePath = texturePath;
+            Textures = textures;
             W = w;
             NW = nw;
             N = n;
@@ -36,9 +36,15 @@ namespace Reliquae.Memory.Models
 
         public IAdjacencyPattern Generate(Map<ushort, string> blockRegistry, ContentManager content, string parentPath)
         {
-            Texture2D texture = content.Load<Texture2D>(Path.Combine(parentPath, TexturePath));
+            List<RandomTexture> textures = new List<RandomTexture>();
+            foreach(var rtm in Textures)
+            {
+                var t = content.Load<Texture2D>(Path.Combine(parentPath, rtm.TexturePath));
+                var rt = new RandomTexture(t, rtm.RandomWeight);
+                textures.Add(rt);
+            }
 
-            return new SingleAdjacencyPattern(texture,
+            return new SingleRandomAdjacencyPattern(textures.ToArray(),
                 get(W), get(NW), get(N), get(NE), get(E), get(SE), get(S), get(SW));
 
             ushort? get(string blockName) => blockName == null ? null : blockRegistry.Reverse[blockName];

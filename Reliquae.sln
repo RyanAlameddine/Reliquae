@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reliquae", "Reliquae\Reliquae.csproj", "{133F71DA-655D-4374-ABC0-375A7AE7C74B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockDataGenerator", "BlockDataGenerator\BlockDataGenerator.csproj", "{4E6C322A-D60B-486C-BBBC-00293025936F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockDataGenerator", "BlockDataGenerator\BlockDataGenerator.csproj", "{4E6C322A-D60B-486C-BBBC-00293025936F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBD05BA7-2965-4E83-B083-79DA102B252F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

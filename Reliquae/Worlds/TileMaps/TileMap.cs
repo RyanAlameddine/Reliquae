@@ -12,19 +12,35 @@ namespace Reliquae.Worlds.TileMaps
     public class TileMap : IPaintable
     {
         private Tile[,] Tiles { get; set; }
+        private ushort[,] Templates { get; set; }
+        private Dictionary<ushort, AdjacencyMap> Patterns { get; set; }
 
-        public TileMap(ushort[,] tiles, Dictionary<ushort, AdjacencyMap> patterns)
+        public TileMap(ushort[,] templates, Dictionary<ushort, AdjacencyMap> patterns)
         {
-            Tile map(int x, int y, ushort template)
-            {
-                return new Tile(patterns[template].Match(tiles, x, y), new Vector2(x, y));
-            }
-            Tiles = tiles.Select(map);
+            Templates = templates;
+            Patterns = patterns;
+
+            Generate();
         }
 
         public void Draw(PainterContext painter)
         {
             Tiles.Foreach((x, y, tile) => tile.Draw(painter));
+        }
+
+        public void ChangeTile(int x, int y, ushort tile)
+        {
+            Templates[y, x] = tile;
+            Generate();
+        }
+
+        private void Generate()
+        {
+            Tile map(int x, int y, ushort template)
+            {
+                return new Tile(Patterns[template].Match(Templates, x, y), new Vector2(x, y));
+            }
+            Tiles = Templates.Select(map);
         }
     }
 }

@@ -6,6 +6,8 @@ using Reliquae.Memory;
 using Reliquae.Worlds.TileMaps;
 using Reliquae.Worlds.TileMaps.Generation;
 using System.Collections.Generic;
+using Reliquae.Utilities;
+using Reliquae.Input;
 
 namespace Reliquae
 {
@@ -16,8 +18,7 @@ namespace Reliquae
 
         private ResourceManager resourceManager;
         private TileMap tileMap;
-
-        Vector2 mousePos;
+        private InputManager input;
 
         public Game1()
         {
@@ -31,6 +32,7 @@ namespace Reliquae
             // TODO: Add your initialization logic here
 
             resourceManager = new ResourceManager();
+            input = new InputManager();
 
             base.Initialize();
         }
@@ -45,31 +47,17 @@ namespace Reliquae
 
             resourceManager.LoadBlocks(Content);
 
-            ushort[,] tiles = new ushort[,] {
-                { 2, 2, 2, 2, 2, 2, 2, 2 },
-                { 1, 1, 1, 1, 1, 1, 1, 1 },
-                { 1, 1, 1, 1, 1, 1, 1, 1 },
-                { 1, 1, 1, 1, 1, 1, 1, 1 },
-                { 2, 2, 2, 2, 2, 1, 1, 2 },
-                { 2, 2, 2, 2, 2, 1, 1, 2 },
-                { 2, 2, 2, 2, 2, 1, 1, 2 },
-                { 2, 2, 2, 2, 2, 1, 1, 2 },
-                { 2, 2, 2, 2, 2, 1, 1, 2 },
-                };
+            ushort[,] tiles = new ushort[30,30];
+            tiles = tiles.Select((x, y, block) => (ushort) 2);
             tileMap = new TileMap(tiles, resourceManager.BlockManager.Patterns);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            input.Update();
 
-            // TODO: Add your update logic here
-            var ms = Mouse.GetState();
-
-
-            mousePos = new Vector2(ms.X / 16 / 5, ms.Y / 16 / 5);
-
+            if (input.LeftButtonDown)  tileMap.ChangeTile((int)input.MousePosition.X, (int) input.MousePosition.Y, 2);
+            if (input.RightButtonDown) tileMap.ChangeTile((int)input.MousePosition.X, (int) input.MousePosition.Y, 1);
 
             base.Update(gameTime);
         }
@@ -80,17 +68,18 @@ namespace Reliquae
             
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            PainterContext painter = new PainterContext(spriteBatch);
+            PainterContext painter = new PainterContext(spriteBatch, gameTime);
             painter.MultiplyPositionScalar(16);
             painter.MultiplyZoom(5);
 
-            tileMap.Draw(painter, gameTime);
+            tileMap.Draw(painter);
 
             Texture2D rect = new Texture2D(graphics.GraphicsDevice, 16, 16);
             Color[] data = new Color[16 * 16];
-            for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+            Color color = new Color(Color.Red, .2f);
+            for (int i = 0; i < data.Length; ++i) data[i] = color;
             rect.SetData(data);
-            painter.Draw(rect, mousePos);
+            painter.Draw(rect, input.MousePosition.ToVector2());
 
             spriteBatch.End();
 
