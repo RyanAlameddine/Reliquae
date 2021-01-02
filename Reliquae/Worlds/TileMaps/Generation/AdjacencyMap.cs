@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Reliquae.TileMaps.Generation
+namespace Reliquae.Worlds.TileMaps.Generation
 {
-    class AdjacencyMap
+    public class AdjacencyMap
     {
         readonly IAdjacencyPattern[] rules;
 

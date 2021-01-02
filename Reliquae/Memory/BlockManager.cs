@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Reliquae.TileMaps.Generation;
+using Reliquae.Worlds.TileMaps.Generation;
 using Reliquae.Utilities;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Reliquae.Memory
 {
-    class BlockManager
+    public class BlockManager
     {
         public Map<ushort, string> BlockRegistry { get; private set; } = new Map<ushort, string>();
 

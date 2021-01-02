@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Reliquae.TileMaps.Generation
+namespace Reliquae.Worlds.TileMaps.Generation
 {
-    interface IAdjacencyPattern
+    public interface IAdjacencyPattern
     {
         public Texture2D Texture { get; }
 

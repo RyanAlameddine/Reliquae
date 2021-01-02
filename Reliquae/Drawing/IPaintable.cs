@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Reliquae.Utilities
+namespace Reliquae.Drawing
 {
-    interface IPaintable
+    public interface IPaintable
     {
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+        public void Draw(PainterContext painter);
     }
 }

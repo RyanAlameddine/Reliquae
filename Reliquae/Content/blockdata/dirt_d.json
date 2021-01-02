@@ -1,0 +1,15 @@
+﻿{
+  "BlockID": 2,
+  "BlockName": "Dirt",
+  "TexturePath": "blocks/dirt/",
+  "Patterns": 
+    [
+      {
+        "TexturePath": "full",
+        "W":  null, 
+        "N":  null, 
+        "E":  null, 
+        "S":  null 
+      }
+    ]
+}

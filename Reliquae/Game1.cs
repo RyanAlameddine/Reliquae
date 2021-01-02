@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Reliquae.Drawing;
 using Reliquae.Memory;
-using Reliquae.TileMaps;
-using Reliquae.TileMaps.Generation;
+using Reliquae.Worlds.TileMaps;
+using Reliquae.Worlds.TileMaps.Generation;
 using System.Collections.Generic;
 
 namespace Reliquae
@@ -15,6 +16,8 @@ namespace Reliquae
 
         private ResourceManager resourceManager;
         private TileMap tileMap;
+
+        Vector2 mousePos;
 
         public Game1()
         {
@@ -36,16 +39,22 @@ namespace Reliquae
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            Window.AllowUserResizing = true;
+
             // TODO: use this.Content to load your game content here
 
             resourceManager.LoadBlocks(Content);
 
             ushort[,] tiles = new ushort[,] {
-                { 2, 2, 2, 2, 2 },
-                { 2, 2, 2, 2, 2 },
-                { 2, 2, 2, 2, 2 },
-                { 2, 2, 2, 2, 2 },
-                { 2, 2, 2, 2, 2 },
+                { 2, 2, 2, 2, 2, 2, 2, 2 },
+                { 1, 1, 1, 1, 1, 1, 1, 1 },
+                { 1, 1, 1, 1, 1, 1, 1, 1 },
+                { 1, 1, 1, 1, 1, 1, 1, 1 },
+                { 2, 2, 2, 2, 2, 1, 1, 2 },
+                { 2, 2, 2, 2, 2, 1, 1, 2 },
+                { 2, 2, 2, 2, 2, 1, 1, 2 },
+                { 2, 2, 2, 2, 2, 1, 1, 2 },
+                { 2, 2, 2, 2, 2, 1, 1, 2 },
                 };
             tileMap = new TileMap(tiles, resourceManager.BlockManager.Patterns);
         }
@@ -56,6 +65,11 @@ namespace Reliquae
                 Exit();
 
             // TODO: Add your update logic here
+            var ms = Mouse.GetState();
+
+
+            mousePos = new Vector2(ms.X / 16 / 5, ms.Y / 16 / 5);
+
 
             base.Update(gameTime);
         }
@@ -64,9 +78,21 @@ namespace Reliquae
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
-            spriteBatch.Begin(SpriteSortMode.BackToFront);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            tileMap.Draw(spriteBatch, gameTime);
+            PainterContext painter = new PainterContext(spriteBatch);
+            painter.MultiplyPositionScalar(16);
+            painter.MultiplyZoom(5);
+
+            tileMap.Draw(painter, gameTime);
+
+            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 16, 16);
+            Color[] data = new Color[16 * 16];
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+            rect.SetData(data);
+            painter.Draw(rect, mousePos);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

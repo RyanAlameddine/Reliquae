@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Reliquae.Utilities
 {
-    interface IUpdatable
+    public interface IUpdatable
     {
         public void Update(GameTime gameTime);
     }

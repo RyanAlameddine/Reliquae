@@ -1,14 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Reliquae.TileMaps.Generation;
+using Reliquae.Drawing;
+using Reliquae.Worlds.TileMaps.Generation;
 using Reliquae.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Reliquae.TileMaps
+namespace Reliquae.Worlds.TileMaps
 {
-    class TileMap : IPaintable
+    public class TileMap : IPaintable
     {
         private Tile[,] Tiles { get; set; }
 
@@ -21,9 +22,9 @@ namespace Reliquae.TileMaps
             Tiles = tiles.Select(map);
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Draw(PainterContext painter)
         {
-            Tiles.Foreach((x, y, tile) => tile.Draw(spriteBatch, gameTime));
+            Tiles.Foreach((x, y, tile) => tile.Draw(painter));
         }
     }
 }

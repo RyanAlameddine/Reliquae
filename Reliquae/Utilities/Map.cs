@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Reliquae.Utilities
 {
-    class Map<T1, T2>
+    /// <summary>
+    /// Two way hashmap between T1 and T2
+    /// </summary>
+    public class Map<T1, T2>
     {
         private readonly Dictionary<T1, T2> _forward = new Dictionary<T1, T2>();
         private readonly Dictionary<T2, T1> _reverse = new Dictionary<T2, T1>();

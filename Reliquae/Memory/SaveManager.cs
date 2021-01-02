@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Reliquae.Memory
 {
-    class SaveManager
+    public class SaveManager
     {
         
     }

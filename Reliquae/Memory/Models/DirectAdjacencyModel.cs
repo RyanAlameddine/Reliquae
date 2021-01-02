@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Reliquae.Memory.Models
 {
-    public class SingleAdjacencyModel : IAdjacencyModel
+    public class DirectAdjacencyModel : IAdjacencyModel
     {
         public string TexturePath { get; init; }
         public string W  { get; init; }
@@ -21,7 +21,7 @@ namespace Reliquae.Memory.Models
         public string S  { get; init; }
         public string SW { get; init; }
 
-        public SingleAdjacencyModel(string texturePath, string w, string nW, string n, string nE, string e, string sE, string s, string sW)
+        public DirectAdjacencyModel(string texturePath, string w, string nW, string n, string nE, string e, string sE, string s, string sW)
         {
             TexturePath = texturePath;
             W = w;
@@ -38,8 +38,8 @@ namespace Reliquae.Memory.Models
         {
             Texture2D texture = content.Load<Texture2D>(Path.Combine(parentPath, TexturePath));
 
-            return new SingleAdjacencyPattern(texture,
-                get(W), get(NW), get(N), get(NE), get(E), get(SE), get(S), get(SW));
+            return new DirectAdjacencyPattern(texture,
+                get(W), get(N), get(E), get(S));
 
             ushort? get(string blockName) => blockName == null ? null : blockRegistry.Reverse[blockName];
         }

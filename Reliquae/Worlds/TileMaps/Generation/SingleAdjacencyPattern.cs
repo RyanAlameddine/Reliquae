@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Reliquae.TileMaps.Generation
+namespace Reliquae.Worlds.TileMaps.Generation
 {
-    class SingleAdjacencyPattern : IAdjacencyPattern
+    public class SingleAdjacencyPattern : IAdjacencyPattern
     {
         public Texture2D Texture { get; init; }
         public ushort? W { get; init; }
@@ -33,14 +33,21 @@ namespace Reliquae.TileMaps.Generation
 
         public bool MatchOn(ushort[,] tiles, int x, int y)
         {
-            return (W  == tiles.Get(x - 1, y    ) || W  == null) &&
-                   (NW == tiles.Get(x - 1, y - 1) || NW == null) &&
-                   (N  == tiles.Get(x    , y - 1) || N  == null) &&
-                   (NE == tiles.Get(x + 1, y - 1) || NE == null) &&
-                   (E  == tiles.Get(x + 1, y    ) || E  == null) &&
-                   (SE == tiles.Get(x + 1, y + 1) || SE == null) &&
-                   (S  == tiles.Get(x    , y + 1) || S  == null) &&
-                   (SW == tiles.Get(x - 1, y + 1) || SW == null);
+            return Check(W , x - 1, y    , tiles, x, y) &&
+                   Check(NW, x - 1, y - 1, tiles, x, y) &&
+                   Check(N , x    , y - 1, tiles, x, y) &&
+                   Check(NE, x + 1, y - 1, tiles, x, y) &&
+                   Check(E , x + 1, y    , tiles, x, y) &&
+                   Check(SE, x + 1, y + 1, tiles, x, y) &&
+                   Check(S , x    , y + 1, tiles, x, y) &&
+                   Check(SW, x - 1, y + 1, tiles, x, y);
+        }
+        bool Check(ushort? dir, int xs, int ys, ushort[,] tiles, int x, int y)
+        {
+            if (dir == null) return true;
+
+            if (ys < 0 || xs < 0 || ys >= tiles.GetLength(0) || xs >= tiles.GetLength(1)) return true;
+            return tiles[ys, xs] == dir;
         }
     }
 }

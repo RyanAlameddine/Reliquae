@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Reliquae.Drawing;
 using Reliquae.Utilities;
 
-namespace Reliquae.TileMaps
+namespace Reliquae.Worlds.TileMaps
 {
     public class Tile : ISprite
     {
@@ -15,9 +16,9 @@ namespace Reliquae.TileMaps
             Position = position;
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Draw(PainterContext painter)
         {
-            spriteBatch.Draw(ActiveTexture, Position * 16, Color.White);
+            painter.Draw(ActiveTexture, Position);
         }
     }
 }

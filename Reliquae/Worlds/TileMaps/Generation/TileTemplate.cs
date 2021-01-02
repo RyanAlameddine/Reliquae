@@ -1,4 +1,4 @@
-﻿namespace Reliquae.TileMaps.Generation
+﻿namespace Reliquae.Worlds.TileMaps.Generation
 {
     /// <summary>
     /// Holds the type of tile it is (dirt, grass, water, etc)

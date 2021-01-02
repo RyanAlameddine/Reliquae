@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Reliquae.Memory.Models;
-using Reliquae.TileMaps.Generation;
+using Reliquae.Worlds.TileMaps.Generation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,14 +11,17 @@ using System.Text.Json;
 
 namespace Reliquae.Memory
 {
-    class ResourceManager
+    public class ResourceManager
     {
         public BlockManager BlockManager { get; private set; } = new BlockManager();
 
         /// <typeparam name="T">The model for the adjacency pattern</typeparam>
         public BlockModel<T> ParseBlock<T>(string json) where T : IAdjacencyModel
         {
-            var block = JsonSerializer.Deserialize<BlockModel<T>>(json);
+            var block = JsonSerializer.Deserialize<BlockModel<T>>(json, new JsonSerializerOptions()
+            {
+                AllowTrailingCommas = true,
+            });
             BlockManager.BlockRegistry.Add(block.BlockID, block.BlockName);
             return block;
         }
@@ -32,12 +35,25 @@ namespace Reliquae.Memory
 
                 string json = File.ReadAllText(file);
 
-                models.Add(ParseBlock<SingleAdjacencyModel>(json));
+                BlockModel model; 
+
+                //TODO: replace this with reflection to follow SOLID principles:
+                if (file.EndsWith("_d.json"))
+                {
+                    model = ParseBlock<DirectAdjacencyModel>(json);
+                }
+                else if (file.EndsWith("_s.json"))
+                {
+                    model = ParseBlock<SingleAdjacencyModel>(json);
+                }
+                else throw new Exception("Block file name must end with \"_s\" or another adjacency model tag!");
+
+                models.Add(model);
             }
 
             foreach(var model in models)
             {
-                var patterns = model.Patterns.Select((x) => x.Generate(BlockManager.BlockRegistry, content)).ToArray();
+                var patterns = model.Generate(BlockManager.BlockRegistry, content);
                 BlockManager.Patterns.Add(model.BlockID, new AdjacencyMap(patterns));
             }
         }
