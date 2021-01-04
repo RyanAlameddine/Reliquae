@@ -29,7 +29,7 @@
     <PackageReference Include="System.Text.Json" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Content\blockdata\dirt_d.json">
+    <None Update="Content\blockdata\dirt_dr.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Content\blockdata\grass_d.json">
@@ -41,8 +41,5 @@
     <None Update="Content\blockdata\grass_sr.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\blocks\grass\dirt\" />
   </ItemGroup>
 </Project>

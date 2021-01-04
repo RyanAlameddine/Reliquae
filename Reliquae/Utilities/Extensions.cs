@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Reliquae.Worlds.TileMaps;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -28,5 +30,23 @@ namespace Reliquae.Utilities
                 }
             }
         }
+
+        /// <summary>
+        /// Converts the point from world coordinates to the equivalent coordinate on the tileMap.
+        /// </summary>
+        public static Point WorldToTile(this Point worldCoordinate)
+            => new Point(worldCoordinate.X / TileMap.TileWidth, worldCoordinate.Y / TileMap.TileWidth);
+
+        /// <summary>
+        /// Converts the point from the tileMap to the world coordinates that represent the top left of the tile.
+        /// </summary>
+        public static Point TileToWorldTopLeft(this Point worldCoordinate)
+            => new Point(worldCoordinate.X * TileMap.TileWidth, worldCoordinate.Y * TileMap.TileWidth);
+
+        /// <summary>
+        /// Converts the point from the tileMap to the world coordinates that represent the center of the tile.
+        /// </summary>
+        public static Point TileToWorldCenter(this Point worldCoordinate)
+            => new Point(worldCoordinate.X * TileMap.TileWidth + TileMap.TileWidth / 2, worldCoordinate.Y * TileMap.TileWidth + TileMap.TileWidth / 2);
     }
 }

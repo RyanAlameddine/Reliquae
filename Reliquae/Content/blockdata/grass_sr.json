@@ -7,10 +7,22 @@
       "Textures": [
         {
           "TexturePath": "full",
-          "RandomWeight": 100
+          "RandomWeight": 3000
         },
         {
-          "TexturePath": "test",
+          "TexturePath": "flowers",
+          "RandomWeight": 45
+        },
+        {
+          "TexturePath": "flowers2",
+          "RandomWeight": 45
+        },
+        {
+          "TexturePath": "stones",
+          "RandomWeight": 25
+        },
+        {
+          "TexturePath": "spot",
           "RandomWeight": 10
         }
       ],
@@ -26,7 +38,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/1",
+          "TexturePath": "dirt/dirt_01",
           "RandomWeight": 100
         }
       ],
@@ -42,7 +54,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/2",
+          "TexturePath": "dirt/dirt_02",
           "RandomWeight": 100
         }
       ],
@@ -58,7 +70,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/3",
+          "TexturePath": "dirt/dirt_03",
           "RandomWeight": 100
         }
       ],
@@ -74,7 +86,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/4",
+          "TexturePath": "dirt/dirt_04",
           "RandomWeight": 100
         }
       ],
@@ -90,7 +102,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/5",
+          "TexturePath": "dirt/dirt_05",
           "RandomWeight": 100
         }
       ],
@@ -106,7 +118,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/6",
+          "TexturePath": "dirt/dirt_06",
           "RandomWeight": 100
         }
       ],
@@ -122,7 +134,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/7",
+          "TexturePath": "dirt/dirt_07",
           "RandomWeight": 100
         }
       ],
@@ -138,7 +150,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/8",
+          "TexturePath": "dirt/dirt_08",
           "RandomWeight": 100
         }
       ],
@@ -154,7 +166,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/9",
+          "TexturePath": "dirt/dirt_09",
           "RandomWeight": 100
         }
       ],
@@ -170,7 +182,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/10",
+          "TexturePath": "dirt/dirt_10",
           "RandomWeight": 100
         }
       ],
@@ -186,7 +198,39 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/11",
+          "TexturePath": "dirt/dirt_11",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Dirt",
+      "NW": null,
+      "N": "Grass",
+      "NE": null,
+      "E": "Dirt",
+      "SE": null,
+      "S": "Grass",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_12",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": null,
+      "N": "Dirt",
+      "NE": null,
+      "E": "Grass",
+      "SE": null,
+      "S": "Dirt",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_13",
           "RandomWeight": 100
         }
       ],
@@ -202,7 +246,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/12",
+          "TexturePath": "dirt/dirt_14",
           "RandomWeight": 100
         }
       ],
@@ -218,7 +262,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/13",
+          "TexturePath": "dirt/dirt_15",
           "RandomWeight": 100
         }
       ],
@@ -234,7 +278,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/14",
+          "TexturePath": "dirt/dirt_16",
           "RandomWeight": 100
         }
       ],
@@ -250,7 +294,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/15",
+          "TexturePath": "dirt/dirt_17",
           "RandomWeight": 100
         }
       ],
@@ -266,7 +310,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/16",
+          "TexturePath": "dirt/dirt_18",
           "RandomWeight": 100
         }
       ],
@@ -282,7 +326,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/17",
+          "TexturePath": "dirt/dirt_19",
           "RandomWeight": 100
         }
       ],
@@ -298,7 +342,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/18",
+          "TexturePath": "dirt/dirt_20",
           "RandomWeight": 100
         }
       ],
@@ -314,7 +358,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/19",
+          "TexturePath": "dirt/dirt_21",
           "RandomWeight": 100
         }
       ],
@@ -330,7 +374,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/20",
+          "TexturePath": "dirt/dirt_22",
           "RandomWeight": 100
         }
       ],
@@ -346,7 +390,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/21",
+          "TexturePath": "dirt/dirt_23",
           "RandomWeight": 100
         }
       ],
@@ -362,7 +406,39 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/22",
+          "TexturePath": "dirt/dirt_24",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Grass",
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": "Grass",
+      "S": "Grass",
+      "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_25",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": "Grass",
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": "Grass"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_26",
           "RandomWeight": 100
         }
       ],
@@ -378,7 +454,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/23",
+          "TexturePath": "dirt/dirt_27",
           "RandomWeight": 100
         }
       ],
@@ -394,7 +470,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/24",
+          "TexturePath": "dirt/dirt_28",
           "RandomWeight": 100
         }
       ],
@@ -410,7 +486,7 @@
     {
       "Textures": [
         {
-          "TexturePath": "dirt/25",
+          "TexturePath": "dirt/dirt_29",
           "RandomWeight": 100
         }
       ],
@@ -422,6 +498,262 @@
       "SE": "Dirt",
       "S": "Grass",
       "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_30",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Dirt",
+      "NW": null,
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": "Grass",
+      "S": "Grass",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_31",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": null,
+      "N": "Dirt",
+      "NE": null,
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": "Grass"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_32",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Grass",
+      "N": "Grass",
+      "NE": null,
+      "E": "Dirt",
+      "SE": null,
+      "S": "Grass",
+      "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_33",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": "Grass",
+      "E": "Grass",
+      "SE": null,
+      "S": "Dirt",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_34",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Dirt",
+      "NW": null,
+      "N": "Grass",
+      "NE": "Grass",
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_35",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": null,
+      "N": "Dirt",
+      "NE": null,
+      "E": "Grass",
+      "SE": "Grass",
+      "S": "Grass",
+      "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_36",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": null,
+      "E": "Dirt",
+      "SE": null,
+      "S": "Grass",
+      "SW": "Grass"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_37",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Grass",
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": null,
+      "S": "Dirt",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_38",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Dirt",
+      "NW": null,
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_39",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": null,
+      "N": "Dirt",
+      "NE": null,
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_40",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": null,
+      "E": "Dirt",
+      "SE": null,
+      "S": "Grass",
+      "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_41",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": null,
+      "S": "Dirt",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_42",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Dirt",
+      "NW": null,
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": null,
+      "S": "Dirt",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_43",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Dirt",
+      "NW": null,
+      "N": "Dirt",
+      "NE": null,
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": null
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_44",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": null,
+      "N": "Dirt",
+      "NE": null,
+      "E": "Dirt",
+      "SE": null,
+      "S": "Grass",
+      "SW": "Dirt"
+    },
+    {
+      "Textures": [
+        {
+          "TexturePath": "dirt/dirt_45",
+          "RandomWeight": 100
+        }
+      ],
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": null,
+      "E": "Dirt",
+      "SE": null,
+      "S": "Dirt",
+      "SW": null
     },
     {
       "Textures": [
@@ -437,7 +769,7 @@
       "E":  null,
       "SE": null,
       "S":  null,
-      "SW": null
-    },
+      "SW": null,
+    }
   ]
 }

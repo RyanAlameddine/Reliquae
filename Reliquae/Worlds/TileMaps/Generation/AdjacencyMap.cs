@@ -17,6 +17,10 @@ namespace Reliquae.Worlds.TileMaps.Generation
 
         public Texture2D Match(ushort[,] t, int x, int y)
         {
+            if (t[y, x] == 1)
+            {
+                ;
+            }
             foreach(var pattern in rules)
             {
                 if (pattern.MatchOn(t, x, y))

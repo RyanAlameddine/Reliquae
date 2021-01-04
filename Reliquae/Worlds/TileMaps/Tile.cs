@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Reliquae.Drawing;
-using Reliquae.Utilities;
 
 namespace Reliquae.Worlds.TileMaps
 {

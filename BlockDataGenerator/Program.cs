@@ -32,6 +32,7 @@ namespace BlockDataGenerator
         {
             Console.WriteLine("Please enter bitmap path:");
             Bitmap bitmap = (Bitmap)Image.FromFile(Console.ReadLine());
+            int totalTiles = (bitmap.Width / 3) * (bitmap.Height / 3);
 
             Console.WriteLine("Please enter the path prefix (e.g. \"dirt/\"): ");
             string pathPrefix = Console.ReadLine();
@@ -39,11 +40,19 @@ namespace BlockDataGenerator
 
             Dictionary<Color, string> colorMap = new Dictionary<Color, string>();
 
-            int i = 1;
+            int i = 0;
             for (int y = 0; y < bitmap.Height; y += 3)
             {
                 for (int x = 0; x < bitmap.Width; x += 3)
                 {
+                    i++;
+
+                    if (loadPixel(x + 1, y + 1) == null)
+                    {
+                        Console.WriteLine("Skipped empty tile");
+                        continue;
+                    }
+
                     string w = loadPixel(x, y + 1);
                     string nw = loadPixel(x, y);
                     string n = loadPixel(x + 1, y);
@@ -53,11 +62,10 @@ namespace BlockDataGenerator
                     string s = loadPixel(x + 1, y + 2);
                     string sw = loadPixel(x, y + 2);
 
-                    var model = constructor(pathPrefix + i, w, nw, n, ne, e, se, s, sw);
+                    var model = constructor(pathPrefix + i.ToString("D" + Math.Floor(Math.Log10(totalTiles) + 1)), w, nw, n, ne, e, se, s, sw);
 
                     models.AddLast(model);
 
-                    i++;
                 }
             }
 

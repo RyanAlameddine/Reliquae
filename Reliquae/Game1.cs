@@ -56,8 +56,8 @@ namespace Reliquae
         {
             input.Update();
 
-            if (input.LeftButtonDown)  tileMap.ChangeTile((int)input.MousePosition.X, (int) input.MousePosition.Y, 2);
-            if (input.RightButtonDown) tileMap.ChangeTile((int)input.MousePosition.X, (int) input.MousePosition.Y, 1);
+            if (input.LeftButtonDown)  tileMap.ChangeTile(new Point((int)input.MousePosition.X, (int) input.MousePosition.Y), 2);
+            if (input.RightButtonDown) tileMap.ChangeTile(new Point((int)input.MousePosition.X, (int) input.MousePosition.Y), 1);
 
             base.Update(gameTime);
         }
@@ -69,7 +69,6 @@ namespace Reliquae
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             PainterContext painter = new PainterContext(spriteBatch, gameTime);
-            painter.MultiplyPositionScalar(16);
             painter.MultiplyZoom(5);
 
             tileMap.Draw(painter);

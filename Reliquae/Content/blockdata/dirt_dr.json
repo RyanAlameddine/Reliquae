@@ -1,0 +1,32 @@
+﻿{
+  "BlockID": 2,
+  "BlockName": "Dirt",
+  "TexturePath": "blocks/dirt/",
+  "Patterns": 
+    [
+      {
+        "Textures": [
+          {
+            "TexturePath": "full",
+            "RandomWeight": 3000
+          },
+          {
+            "TexturePath": "stone",
+            "RandomWeight": 30
+          },
+          {
+            "TexturePath": "sprout",
+            "RandomWeight": 15
+          },
+          {
+            "TexturePath": "smudge",
+            "RandomWeight": 15
+          }
+        ],
+        "W":  null, 
+        "N":  null, 
+        "E":  null, 
+        "S":  null 
+      }
+    ]
+}

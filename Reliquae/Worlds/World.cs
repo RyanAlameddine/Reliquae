@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Reliquae.Drawing;
 using Reliquae.Utilities;
-using Reliquae.Worlds.EntityMaps;
+using Reliquae.Worlds.Entities.EntityMaps;
 using Reliquae.Worlds.TileMaps;
 using System;
 using System.Collections.Generic;

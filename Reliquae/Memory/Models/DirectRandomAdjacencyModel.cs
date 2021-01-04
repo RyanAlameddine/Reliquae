@@ -9,17 +9,17 @@ using System.Text;
 
 namespace Reliquae.Memory.Models
 {
-    public class DirectAdjacencyModel : IAdjacencyModel
+    public class DirectRandomAdjacencyModel : IAdjacencyModel
     {
-        public string TexturePath { get; init; }
+        public RandomTextureModel[] Textures { get; init; }
         public string W  { get; init; }
         public string N  { get; init; }
         public string E  { get; init; }
         public string S  { get; init; }
 
-        public DirectAdjacencyModel(string texturePath, string w, string n, string e, string s)
+        public DirectRandomAdjacencyModel(RandomTextureModel[] textures, string w, string n, string e, string s)
         {
-            TexturePath = texturePath;
+            Textures = textures;
             W = w;
             N = n;
             E = e;
@@ -28,10 +28,15 @@ namespace Reliquae.Memory.Models
 
         public IAdjacencyPattern Generate(Map<ushort, string> blockRegistry, ContentManager content, string parentPath)
         {
-            Texture2D texture = content.Load<Texture2D>(Path.Combine(parentPath, TexturePath));
+            List<RandomTexture> textures = new List<RandomTexture>();
+            foreach(var rtm in Textures)
+            {
+                var t = content.Load<Texture2D>(Path.Combine(parentPath, rtm.TexturePath));
+                var rt = new RandomTexture(t, rtm.RandomWeight);
+                textures.Add(rt);
+            }
 
-            return new DirectAdjacencyPattern(texture,
-                get(W), get(N), get(E), get(S));
+            return new DirectRandomAdjacencyPattern(textures.ToArray(), get(W), get(N), get(E), get(S));
 
             ushort? get(string blockName) => blockName == null ? null : blockRegistry.Reverse[blockName];
         }
