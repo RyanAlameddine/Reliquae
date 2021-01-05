@@ -493,7 +493,7 @@
       "W": "Grass",
       "NW": "Dirt",
       "N": "Grass",
-      "NE": "Dirt",
+      "NE": "Grass",
       "E": "Grass",
       "SE": "Dirt",
       "S": "Grass",
@@ -758,18 +758,18 @@
     {
       "Textures": [
         {
-          "TexturePath": "full",
+          "TexturePath": "dirt/dirt_46",
           "RandomWeight": 100
         }
       ],
-      "W":  null,
-      "NW": null,
-      "N":  null,
-      "NE": null,
-      "E":  null,
-      "SE": null,
-      "S":  null,
-      "SW": null,
+      "W": "Grass",
+      "NW": "Dirt",
+      "N": "Grass",
+      "NE": "Dirt",
+      "E": "Grass",
+      "SE": "Dirt",
+      "S": "Grass",
+      "SW": "Dirt"
     }
   ]
 }

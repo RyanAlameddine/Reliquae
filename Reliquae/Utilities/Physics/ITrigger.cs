@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reliquae.Worlds.Entities.EntityMaps
+namespace Reliquae.Utilities.Physics
 {
     public interface ITrigger : IIntersectable
     {
-
+        public void OnTriggerEnter(CollisionEventArgs collisionEventArgs);
+        public void OnTriggerExit (CollisionEventArgs collisionEventArgs);
     }
 }

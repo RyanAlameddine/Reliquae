@@ -48,5 +48,8 @@ namespace Reliquae.Utilities
         /// </summary>
         public static Point TileToWorldCenter(this Point worldCoordinate)
             => new Point(worldCoordinate.X * TileMap.TileWidth + TileMap.TileWidth / 2, worldCoordinate.Y * TileMap.TileWidth + TileMap.TileWidth / 2);
+
+        public static Vector2 Copy(this Vector2 vector)
+            => new Vector2(vector.X, vector.Y);
     }
 }

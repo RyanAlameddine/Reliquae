@@ -30,7 +30,7 @@ namespace Reliquae.Worlds.TileMaps.Generation
                    Check(E , x + 1, y    , tiles, x, y) &&
                    Check(S , x    , y + 1, tiles, x, y);
         }
-        bool Check(ushort? dir, int xs, int ys, ushort[,] tiles, int x, int y)
+        static bool Check(ushort? dir, int xs, int ys, ushort[,] tiles, int x, int y)
         {
             if (dir == null) return true;
 

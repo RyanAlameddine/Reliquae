@@ -48,7 +48,7 @@ namespace Reliquae
             resourceManager.LoadBlocks(Content);
 
             ushort[,] tiles = new ushort[30,30];
-            tiles = tiles.Select((x, y, block) => (ushort) 2);
+            tiles = tiles.Select((x, y, block) => (ushort) 1);
             tileMap = new TileMap(tiles, resourceManager.BlockManager.Patterns);
         }
 
@@ -56,8 +56,8 @@ namespace Reliquae
         {
             input.Update();
 
-            if (input.LeftButtonDown)  tileMap.ChangeTile(new Point((int)input.MousePosition.X, (int) input.MousePosition.Y), 2);
-            if (input.RightButtonDown) tileMap.ChangeTile(new Point((int)input.MousePosition.X, (int) input.MousePosition.Y), 1);
+            if (input.LeftButtonDown)  tileMap.ChangeTile(new Point(input.MousePosition.X, input.MousePosition.Y), 2);
+            if (input.RightButtonDown) tileMap.ChangeTile(new Point(input.MousePosition.X, input.MousePosition.Y), 1);
 
             base.Update(gameTime);
         }
@@ -78,7 +78,7 @@ namespace Reliquae
             Color color = new Color(Color.Red, .2f);
             for (int i = 0; i < data.Length; ++i) data[i] = color;
             rect.SetData(data);
-            painter.Draw(rect, input.MousePosition.ToVector2());
+            painter.Draw(rect, input.MousePosition.ToVector2() * 16);
 
             spriteBatch.End();
 

@@ -26,7 +26,9 @@ namespace Reliquae.Memory.Models
 
         public IAdjacencyPattern[] Generate(Map<ushort, string> blockRegistry, ContentManager content)
         {
-            return Patterns.Select((x) => x.Generate(blockRegistry, content, TexturePath)).ToArray();
+            ushort? getID(string blockName) => blockName == null ? null : blockRegistry.Reverse[blockName];
+
+            return Patterns.Select((x) => x.Generate(getID, content, TexturePath)).ToArray();
         }
     }
 

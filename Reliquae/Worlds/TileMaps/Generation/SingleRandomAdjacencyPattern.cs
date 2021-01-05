@@ -28,7 +28,7 @@ namespace Reliquae.Worlds.TileMaps.Generation
 
         public bool MatchOn(ushort[,] tiles, int x, int y)
         {
-            int hash = MathHelper.Hash(x, y);
+            int hash = MathHelper.Hash(x * tiles[y, x], y);
             Random rand = new Random(hash);
             int total = Textures.Select((x) => x.RandomWeight).Sum();
             int selection = rand.Next(0, total);

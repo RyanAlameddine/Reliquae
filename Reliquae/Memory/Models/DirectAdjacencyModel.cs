@@ -26,14 +26,12 @@ namespace Reliquae.Memory.Models
             S = s;
         }
 
-        public IAdjacencyPattern Generate(Map<ushort, string> blockRegistry, ContentManager content, string parentPath)
+        public IAdjacencyPattern Generate(Func<string, ushort?> getID, ContentManager content, string parentPath)
         {
             Texture2D texture = content.Load<Texture2D>(Path.Combine(parentPath, TexturePath));
 
             return new DirectAdjacencyPattern(texture,
-                get(W), get(N), get(E), get(S));
-
-            ushort? get(string blockName) => blockName == null ? null : blockRegistry.Reverse[blockName];
+                getID(W), getID(N), getID(E), getID(S));
         }
     }
 }

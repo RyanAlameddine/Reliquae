@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reliquae.Worlds.Entities.EntityMaps
 {
-    public interface ISolid : IIntersectable
+    public class ComponentRegistry
     {
-        public void OnIntersect(ISolid other) { }
     }
 }

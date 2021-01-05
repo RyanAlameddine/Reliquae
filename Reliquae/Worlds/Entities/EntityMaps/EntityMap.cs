@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Reliquae.Worlds.Entities.EntityMaps
 {
-    public class EntityMap : IPaintable, IUpdatable
+    public class EntityMap : IUpdatable
     {
         public void Draw(PainterContext painter)
         {

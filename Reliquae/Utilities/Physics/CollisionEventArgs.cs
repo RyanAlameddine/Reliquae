@@ -1,15 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using Reliquae.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reliquae.Worlds.Entities.EntityMaps
+namespace Reliquae.Utilities.Physics
 {
-    public interface IIntersectable : ISprite
+    public class CollisionEventArgs : EventArgs
     {
-        Rectangle HitBox { get; }
+        public readonly Rectangle other;
     }
 }

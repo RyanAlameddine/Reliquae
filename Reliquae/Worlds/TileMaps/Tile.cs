@@ -8,16 +8,12 @@ namespace Reliquae.Worlds.TileMaps
     {
         public Texture2D ActiveTexture { get; protected set; }
         public Vector2 Position { get; protected set; }
+        public float Rotation { get; protected set; }
 
         public Tile(Texture2D activeTexture, Vector2 position)
         {
             ActiveTexture = activeTexture;
             Position = position;
-        }
-
-        public void Draw(PainterContext painter)
-        {
-            painter.Draw(ActiveTexture, Position);
         }
     }
 }

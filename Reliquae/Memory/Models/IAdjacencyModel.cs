@@ -9,6 +9,6 @@ namespace Reliquae.Memory.Models
 {
     public interface IAdjacencyModel
     {
-        public IAdjacencyPattern Generate(Map<ushort, string> blockRegistry, ContentManager content, string parentPath);
+        public IAdjacencyPattern Generate(Func<string, ushort?> getID, ContentManager content, string parentPath);
     }
 }

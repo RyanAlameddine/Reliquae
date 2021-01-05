@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Reliquae.Worlds.TileMaps
 {
-    public class TileMap : IPaintable
+    public class TileMap
     {
         private Tile[,] Tiles { get; set; }
         private ushort[,] Templates { get; set; }
@@ -28,7 +28,7 @@ namespace Reliquae.Worlds.TileMaps
         public void Draw(PainterContext painter)
         {
             painter.MultiplyPositionScalar(TileWidth);
-            Tiles.Foreach((x, y, tile) => tile.Draw(painter));
+            Tiles.Foreach((x, y, tile) => painter.Draw(tile.ActiveTexture, tile.Position));
         }
 
         /// <summary>

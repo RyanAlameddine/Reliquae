@@ -26,7 +26,7 @@ namespace Reliquae.Memory.Models
             S = s;
         }
 
-        public IAdjacencyPattern Generate(Map<ushort, string> blockRegistry, ContentManager content, string parentPath)
+        public IAdjacencyPattern Generate(Func<string, ushort?> getID, ContentManager content, string parentPath)
         {
             List<RandomTexture> textures = new List<RandomTexture>();
             foreach(var rtm in Textures)
@@ -36,9 +36,7 @@ namespace Reliquae.Memory.Models
                 textures.Add(rt);
             }
 
-            return new DirectRandomAdjacencyPattern(textures.ToArray(), get(W), get(N), get(E), get(S));
-
-            ushort? get(string blockName) => blockName == null ? null : blockRegistry.Reverse[blockName];
+            return new DirectRandomAdjacencyPattern(textures.ToArray(), getID(W), getID(N), getID(E), getID(S));
         }
     }
 }

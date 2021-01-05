@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Reliquae.Worlds
 {
-    public class World : IPaintable, IUpdatable
+    public class World : IUpdatable
     {
         public Tape<(TileMap tileMap, EntityMap entityMap)> Layers { get; set; }
 
