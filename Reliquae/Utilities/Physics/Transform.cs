@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Reliquae.Utilities.Physics
 {
-    public interface ITransform
+    public class Transform
     {
-        public Vector2 Position { get; }
+        private Vector2 position;
+        public virtual Vector2 Position { get => position; set => position = value; }
     }
 }

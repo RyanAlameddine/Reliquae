@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Reliquae.Utilities.Physics;
+using Reliquae.Worlds.Entities.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;

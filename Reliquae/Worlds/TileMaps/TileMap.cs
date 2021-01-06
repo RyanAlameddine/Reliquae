@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Reliquae.Drawing;
 using Reliquae.Worlds.TileMaps.Generation;
 using Reliquae.Utilities;
@@ -9,7 +8,7 @@ using System.Text;
 
 namespace Reliquae.Worlds.TileMaps
 {
-    public class TileMap
+    public class TileMap : IDrawable
     {
         private Tile[,] Tiles { get; set; }
         private ushort[,] Templates { get; set; }
@@ -21,6 +20,7 @@ namespace Reliquae.Worlds.TileMaps
         {
             Templates = templates;
             Patterns = patterns;
+            Tiles = new Tile[templates.GetLength(0), templates.GetLength(1)];
 
             Generate();
         }
@@ -28,24 +28,34 @@ namespace Reliquae.Worlds.TileMaps
         public void Draw(PainterContext painter)
         {
             painter.MultiplyPositionScalar(TileWidth);
-            Tiles.Foreach((x, y, tile) => painter.Draw(tile.ActiveTexture, tile.Position));
+            Tiles.Foreach((x, y, tile) => painter.Draw(tile.ActiveTexture, tile.Transform.Position));
         }
 
         /// <summary>
         /// Change the tile at the Point in Tile-relative coordinates
         /// </summary>
-        public void ChangeTile(Point tilePosition, ushort tile)
+        public void ChangeTile(Microsoft.Xna.Framework.Point tilePosition, ushort tile)
         {
             Templates[tilePosition.Y, tilePosition.X] = tile;
-            Generate();
+            GenerateRange(tilePosition.X, tilePosition.Y, 1);
         }
 
         private void Generate()
         {
-            Tile map(int x, int y, ushort template) 
-                => new Tile(Patterns[template].Match(Templates, x, y), new Vector2(x, y));
+            GenerateRange(0, 0, int.MaxValue/10);
+        }
 
-            Tiles = Templates.Select(map);
+        private void GenerateRange(int xs, int ys, int range)
+        {
+            for (int y = Math.Max(0, ys - range); y < Math.Min(Templates.GetLength(0), ys + range + 1); y++)
+            {
+                for (int x = Math.Max(0, xs - range); x < Math.Min(Templates.GetLength(1), xs + range + 1); x++)
+                {
+                    Tiles[y, x] = map(x, y, Templates[y, x]);
+                }
+            }
+            Tile map(int x, int y, ushort template)
+               => new Tile(Patterns[template].Match(Templates, x, y), new Microsoft.Xna.Framework.Vector2(x, y));
         }
     }
 }

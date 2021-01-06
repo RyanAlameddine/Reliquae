@@ -8,6 +8,10 @@ using Reliquae.Worlds.TileMaps.Generation;
 using System.Collections.Generic;
 using Reliquae.Utilities;
 using Reliquae.Input;
+using Reliquae.Worlds;
+using Reliquae.Worlds.Entities;
+using Reliquae.Utilities.Physics;
+using Reliquae.Utilities.Physics.Forces;
 
 namespace Reliquae
 {
@@ -17,8 +21,20 @@ namespace Reliquae
         private SpriteBatch spriteBatch;
 
         private ResourceManager resourceManager;
-        private TileMap tileMap;
         private InputManager input;
+        private World world;
+
+        Player player;
+
+        Texture2D rect;
+
+        FrameCounter framecounter;
+
+        SpriteFont spriteFont;
+
+        Vector2 cameraOffset;
+
+        const int zoom = 4;
 
         public Game1()
         {
@@ -32,9 +48,16 @@ namespace Reliquae
             // TODO: Add your initialization logic here
 
             resourceManager = new ResourceManager();
-            input = new InputManager();
+            input = new InputManager(() => cameraOffset * zoom);
+            framecounter = new FrameCounter();
 
             base.Initialize();
+
+            rect = new Texture2D(graphics.GraphicsDevice, 16, 16);
+            Color[] data = new Color[16 * 16];
+            Color color = new Color(Color.Red, .2f);
+            for (int i = 0; i < data.Length; ++i) data[i] = color;
+            rect.SetData(data);
         }
 
         protected override void LoadContent()
@@ -43,22 +66,53 @@ namespace Reliquae
 
             Window.AllowUserResizing = true;
 
+            spriteFont = Content.Load<SpriteFont>("Font");
+
             // TODO: use this.Content to load your game content here
 
             resourceManager.LoadBlocks(Content);
 
-            ushort[,] tiles = new ushort[30,30];
-            tiles = tiles.Select((x, y, block) => (ushort) 1);
-            tileMap = new TileMap(tiles, resourceManager.BlockManager.Patterns);
+            //Tilemap
+            ushort[,] tiles = new ushort[50, 50];
+            tiles = tiles.Select((x, y, block) => (ushort)1);
+            TileMap tileMap = new TileMap(tiles, resourceManager.BlockManager.Patterns);
+
+
+            //Player
+            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 16, 16);
+            Color[] data = new Color[16 * 16];
+            Color color = new Color(Color.Red, .2f);
+            for (int i = 0; i < data.Length; ++i) data[i] = color;
+            rect.SetData(data);
+            List<IForce> forces = new List<IForce>();
+            KineticComponent playerKinetics = new KineticComponent(forces, 60);
+            forces.AddRange(new List<IForce>()
+            {
+                new ControlForce(() => input.VerticalAxis * 1000, () => playerKinetics.Velocity, new Vector2(0, 1)),
+                new ControlForce(() => input.HorizontalAxis * 1000, () => playerKinetics.Velocity, new Vector2(1, 0)),
+            }
+            );
+            player = new Player(rect, playerKinetics, new ColliderTransform(new Rectangle(0, 0, 16, 16), Vector2.Zero));
+
+            //Entity Map
+            EntityMap entityMap = new EntityMap(player);
+
+            //World
+            world = new World(new List<(TileMap, EntityMap)>() { (tileMap, entityMap) }, 0, () => default, () => default);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            input.Update();
+            input.Update(gameTime);
 
-            if (input.LeftButtonDown)  tileMap.ChangeTile(new Point(input.MousePosition.X, input.MousePosition.Y), 2);
-            if (input.RightButtonDown) tileMap.ChangeTile(new Point(input.MousePosition.X, input.MousePosition.Y), 1);
+            if (input.LeftButtonDown)  world.Layers[0].tileMap.ChangeTile(new Point(input.MouseTilePosition.X, input.MouseTilePosition.Y), 2);
+            if (input.RightButtonDown) world.Layers[0].tileMap.ChangeTile(new Point(input.MouseTilePosition.X, input.MouseTilePosition.Y), 1);
 
+            world.Update(gameTime);
+
+            float x = player.Transform.Position.X + player.Transform.Hitbox.Width/2;
+            float y = player.Transform.Position.Y + player.Transform.Hitbox.Height/2;
+            cameraOffset = new Vector2(x - graphics.GraphicsDevice.Viewport.Width/2/zoom, y - graphics.GraphicsDevice.Viewport.Height/2/zoom);
             base.Update(gameTime);
         }
 
@@ -66,19 +120,22 @@ namespace Reliquae
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             PainterContext painter = new PainterContext(spriteBatch, gameTime);
-            painter.MultiplyZoom(5);
+            painter.MultiplyZoom(zoom);
+            painter.AddOffset(cameraOffset); //follow player
 
-            tileMap.Draw(painter);
+            world.Draw(painter);
 
-            Texture2D rect = new Texture2D(graphics.GraphicsDevice, 16, 16);
-            Color[] data = new Color[16 * 16];
-            Color color = new Color(Color.Red, .2f);
-            for (int i = 0; i < data.Length; ++i) data[i] = color;
-            rect.SetData(data);
-            painter.Draw(rect, input.MousePosition.ToVector2() * 16);
+            painter.Draw(rect, input.MouseTilePosition.ToVector2() * 16);
+
+            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            framecounter.Update(deltaTime);
+
+
+            spriteBatch.DrawString(spriteFont, framecounter.CurrentFramesPerSecond.ToString(), new Vector2(2, 2), Color.Black);
 
             spriteBatch.End();
 

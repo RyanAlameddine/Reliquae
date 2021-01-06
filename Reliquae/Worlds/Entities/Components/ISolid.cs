@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reliquae.Utilities.Physics
+namespace Reliquae.Worlds.Entities.Components
 {
-    public interface ISolid : IIntersectable
+    public interface ISolid : IColliderTransform
     {
         //public void OnIntersect(ISolid other) { }
     }

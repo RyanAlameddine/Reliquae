@@ -2,6 +2,7 @@
 using Reliquae.Worlds.TileMaps;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Reliquae.Utilities
@@ -51,5 +52,17 @@ namespace Reliquae.Utilities
 
         public static Vector2 Copy(this Vector2 vector)
             => new Vector2(vector.X, vector.Y);
+
+
+        /// <summary>
+        /// Returns an IEnumerable<<typeparamref name="T2"/>> of all values which did not fail to cast.
+        /// </summary>
+        public static IEnumerable<T2> WhereCast<T1, T2>(this IEnumerable<T1> items) where T2 : class
+            => items.Select((x) => x as T2).Where((x) => x != null);
+
+        public static void ForEach<T1>(this IEnumerable<T1> items, Action<T1> action)
+        { 
+            foreach (var item in items) action(item);
+        }
     }
 }

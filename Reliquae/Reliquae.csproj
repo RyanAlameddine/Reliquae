@@ -29,21 +29,14 @@
     <PackageReference Include="System.Text.Json" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Content\blockdata\dirt_dr.json">
+    <None Update="Content\blockTemplates\dirt_dr.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Content\blockdata\grass_d.json">
+    <None Update="Content\blockTemplates\grass_sr.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Content\blockdata\grass_s.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Update="Content\Pixeled.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="Content\blockdata\grass_sr.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="Worlds\Events\" />
   </ItemGroup>
 </Project>

@@ -27,10 +27,11 @@ namespace Reliquae.Drawing
 
         public void Draw(Texture2D texture, Vector2 position)
         {
-            SpriteBatch.Draw(texture, position * PositionScalar * Zoom + Position, null, Color.White, 0f, Vector2.Zero, Zoom, SpriteEffects.None, 0);
+            SpriteBatch.Draw(texture, (position) * PositionScalar * Zoom + Position, null, Color.White, 0f, Vector2.Zero, Zoom, SpriteEffects.None, 0);
         }
 
         public void MultiplyPositionScalar(float PositionScalar) { this.PositionScalar *= PositionScalar; }
         public void MultiplyZoom(float Zoom) { this.Zoom *= Zoom; }
+        public void AddOffset(Vector2 Offset) { Position -= Offset * Zoom; }
     }
 }

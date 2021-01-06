@@ -1,15 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Reliquae.Drawing;
+using Reliquae.Utilities.Physics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reliquae.Utilities.Physics
+namespace Reliquae.Worlds.Entities.Components
 {
-    public interface IIntersectable : ISprite
+    public interface IColliderTransform : ISprite
     {
-        Rectangle HitBox { get; }
+        ColliderTransform ColliderTransform { get; }
     }
 }

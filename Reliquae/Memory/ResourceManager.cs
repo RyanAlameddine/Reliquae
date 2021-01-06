@@ -29,7 +29,7 @@ namespace Reliquae.Memory
         public void LoadBlocks(ContentManager content)
         {
             List<BlockModel> models = new List<BlockModel>();
-            foreach (var file in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Content", "blockdata")))
+            foreach (var file in Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Content", "blockTemplates")))
             {
                 if (!file.EndsWith(".json")) continue;
 

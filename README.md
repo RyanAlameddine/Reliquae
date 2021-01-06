@@ -10,7 +10,7 @@
 
 # Reliquae
 
-A topdown game built in C# .NET Core with Monogame. Build structures, fight monsters, establish farms, fish, and explore in this story-driven game!
+A topdown game built in C# .NET Core with Monogame and my own Entity-Component-System. Build structures, fight monsters, establish farms, fish, and explore in this story-driven game!
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -18,7 +18,7 @@ A topdown game built in C# .NET Core with Monogame. Build structures, fight mons
   <ol>
     <li><a href="#implementation">Implementation</a>
       <ul>
-        <li><a href="#events">Events</a></li>
+        <li><a href="#Components">Entity Component System</a></li>
         <li><a href="#world">World</a></li>
         <li><a href="#tilemap">Tile Maps</a></li>
         <ul>
@@ -37,24 +37,28 @@ A topdown game built in C# .NET Core with Monogame. Build structures, fight mons
 
 ## Implemenatation
 
-### Events
+### Components
 
-The entire game is run on an event system. Different interactions and events will cause functions to be called in classes with one of the following event interfaces:
- - `IUpdatable`
- - `IPaintable`
- - `IInteractable`
+The Entity Component System I have programmed is the core of this game. Every single Entity in the game, whether it be a static path decoration, a monster, or the player itself is stored in a class which contains only its data. These classes will implement a set of interfaces (which all inherit from `IComponent`) which will provide a template for the properties which need to be provided. Implementing this interface will add any instance created to the list of components registered by any and all Systems which look over these sets of components. These systems will perform the necessary calculations and establish the interactions between Component objects. For example, the `PhysicsSystem` provides movement to all objects with a `IKinetic` component. Here is a list of all available Component interfaces:
+
+  - `ITransform : IComponent` - Basic `Transform` Component that holds positional information. All objects with `Transforms` are given to the `PhysicsSystem`.
+    - `IKinetic : ITransform` - Represents an object that can move (is not static). The movement will be handled by the `PhysicsSystem`.
+    - `ISprite : ITransform` - If present, the `ActiveTexture` will be drawn to the screen at the `Transform's` Position by the `RenderSystem`.
+      - `IColliderTransform : ISprite` - Represents any object that has a collider.
+        - `ISolid : IColliderTransform` - Represents any object who's collider is solid.
+        - `ITrigger : IColliderTransform` - Represents any object who's collider is a trigger instead of being solid.
 
 ### World
 
-The core of the game data is stored in the `World` class. It contains a `Tape` (custom data structure) of a tuple containing a `TileMap` and an `EntityMap`.
-Each node in the `Tape` represents one layer of the world. For example, the starting tilemap is the base ground level and the starting entity map describes all 
-static and non-static entities on the ground level. The layer below on the tape might represent the mining area directly underneath ground level.
+The world of the game data is stored in the `World` class. It contains a `Tape` (custom data structure) of a tuple containing a `TileMap` and an `EntityMap`.
+Each node in the `Tape` represents one layer of the world. For example, the starting tilemap is the base ground level and the starting entity map describes all static and non-static entities on the ground level. The layer below on the tape might represent the mining area directly underneath ground level.
 
 ### Tile-Maps
 
 Time-maps contain a 2D-array of `Tiles`. This map can be saved and loaded from memory. 
 When loaded, the blockdata will be used to automatically select the textures based on adjacency patterns.
 For example, if there is dirt adjacent to a grass tile, the grass tile will select a texture which shows the intersection of the two tiles.
+With two regular intersecting tiles, there can be over 40 different intersections which are all auto-generated through the Blockdata.
 
 ### Blockdata
 
@@ -66,6 +70,7 @@ The available format options are:
 
  - `DirectAdjacencyModel/Pattern` (*name_d.json*) - Simplest patterns which matches on only the directly adjacent tiles ( W N E S )
  - `SingleAdjacencyModel/Pattern` (*name_s.json*) - Simple patterns which match on all adjacent tiles ( W NW N NE E SE S SW )
+ - `DirectRandomAdjacencyModel/Pattern` (*name_dr.json*) - DirectAdjacency but multiple textures can be listed with random weights
  - `SingleRandomAdjacencyModel/Pattern` (*name_sr.json*) - SingleAdjacency but multiple textures can be listed with random weights
 
 ## Gameplay

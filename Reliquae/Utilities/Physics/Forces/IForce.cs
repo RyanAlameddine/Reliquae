@@ -9,6 +9,8 @@ namespace Reliquae.Utilities.Physics.Forces
         /// from the list for optimization.
         /// </summary>
         public bool ForceComplete { get; }
+        
+        /// <returns>Force vector in units per second</returns>
         public Vector2 GetForce(GameTime time);
     }
 }
