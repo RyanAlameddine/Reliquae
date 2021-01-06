@@ -44,9 +44,9 @@ The Entity Component System I have programmed is the core of this game. Every si
   - `ITransform : IComponent` - Basic `Transform` Component that holds positional information. All objects with `Transforms` are given to the `PhysicsSystem`.
     - `IKinetic : ITransform` - Represents an object that can move (is not static). The movement will be handled by the `PhysicsSystem`.
     - `ISprite : ITransform` - If present, the `ActiveTexture` will be drawn to the screen at the `Transform's` Position by the `RenderSystem`.
-      - `IColliderTransform : ISprite` - Represents any object that has a collider.
-        - `ISolid : IColliderTransform` - Represents any object who's collider is solid.
-        - `ITrigger : IColliderTransform` - Represents any object who's collider is a trigger instead of being solid.
+        - `IColliderTransform : ISprite` - Represents any object that has a collider.
+          - `ISolid : IColliderTransform` - Represents any object who's collider is solid.
+          - `ITrigger : IColliderTransform` - Represents any object who's collider is simply a trigger.
 
 ### World
 
