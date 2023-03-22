@@ -75,7 +75,7 @@ The available format options are:
 
 ## Gameplay
 
-TODO: Insert screenshots here.
+![gameplay](https://github.com/RyanAlameddine/Reliquae/raw/master/READMEContent/reliquae.gif)
 
 ## Installation
 
